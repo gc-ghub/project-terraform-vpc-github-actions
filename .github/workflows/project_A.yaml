@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+    
 
 env:
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
@@ -32,10 +37,6 @@ jobs:
         run: terraform plan
         working-directory: ./Terraform_VPC
       - name: Terraform Apply
-        id: apply
-        run: terraform apply --auto-approve
-        working-directory: ./Terraform_VPC
-      - name: Terraform Destroy
         id: apply
         run: terraform destroy --auto-approve
         working-directory: ./Terraform_VPC
